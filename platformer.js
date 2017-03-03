@@ -23,9 +23,10 @@ var dir = 0;
 var speed = 5;
 var yVel = 0;
 var gravity = .5;
+var terminalVel = 20;
 var jumpPower = 10;
 
-var player = {x:50, y:300, w:25, h:25};
+var player = {x:25, y:75, w:25, h:25};
 var walls = [{x:25, y:25, w:50, h:50},
              {x:0, y:0, w:1000, h:25},
              {x:0, y:0, w:25, h:1000},
@@ -178,6 +179,9 @@ function moveFall() {
         yVel = 0;
     } else {
         yVel -= gravity;
+        if (yVel < -1 * terminalVel) {
+            yVel = -1 * terminalVel;
+        }
         for (var spd = yVel; spd < 0; spd += gravity) {
             var tempPlayer = modifyObject(player, 0, spd, 0, 0);
             if (!collisionOL(tempPlayer, walls)) {
