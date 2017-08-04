@@ -12,7 +12,7 @@ document.addEventListener("keyup", keyUp, false);
 
 
 // Global Variables
-var c, ctx;
+//var c, ctx;
 
 var HEIGHT = WIDTH = 500;
 
@@ -71,8 +71,8 @@ function draw() {
 // Handle drawing each object with origin at bottom left and a camera position
 function drawObject(obj) {
     if (CAMERA_FOLLOW) {
-        camX = player.x - WIDTH/2;
-        camY = player.y - HEIGHT/2;
+        camX = player.x - WIDTH/2 + Math.floor(player.w/2);
+        camY = player.y - HEIGHT/2 + Math.floor(player.h/2);
     } else {
         camX = 0;
         camY = 0;
@@ -125,11 +125,7 @@ function drawKill() {
 }
 
 function drawPlayer() {
-    if (collisionOL(player, walls)) {
-        ctx.fillStyle = "#ff0000";
-    } else {
-        ctx.fillStyle = "#2ecc71";
-    }
+    ctx.fillStyle = "#2ecc71";
     drawObject(player);
 }
 
